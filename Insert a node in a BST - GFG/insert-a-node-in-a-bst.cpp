@@ -116,13 +116,24 @@ int main() {
 // Function to insert a node in a BST.
 Node* insert(Node* root, int x) {
     // Your code here
-    if(root == NULL) return new Node(x);
+    Node *temp = new Node(x);
+    Node *parent = NULL; 
+    Node *curr = root;
     
-    if(root->data == x) return root;
+    while(curr != NULL){
+        parent = curr;
+        if(curr->data > x) curr = curr->left;
+        
+        else if(curr->data < x) curr = curr->right;
+        
+        else return root;
+    }
     
-    if(root->data > x) root->left = insert(root->left, x);
+    if(parent == NULL) return temp;
     
-    else root->right = insert(root->right, x);
+    if(parent->data > x) parent->left = temp;
+    
+    else parent->right = temp;
     
     return root;
 }
