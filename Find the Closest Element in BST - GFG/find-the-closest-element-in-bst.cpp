@@ -25,26 +25,21 @@ class Solution
     public:
     //Function to find the least absolute difference between any node
 	//value of the BST and the given integer.
+	int ans = INT_MAX;
     int minDiff(Node *root, int K)
     {
-        //Your code here
-        if(root == NULL) return 0;
-        int ans=INT_MAX;
-        while(root != NULL){
-            if(root->data > K){
-                ans = min(ans, abs(root->data - K));
-                root = root->left;
-            }
-            else if(root->data < K){
-                ans = min(ans, abs(root->data - K));
-                root = root->right;
-            }
-            else if(root->data == K){
-                ans = 0;
-                return ans;
-            }
+        if(root == NULL) return -1;
+        
+        if(root->data > K){
+            ans = min(ans, abs(K - root->data));
+            minDiff(root->left, K);
+        }
+        else {
+            ans = min(ans, abs(K - root->data));
+            minDiff(root->right, K);
         }
         return ans;
+        
     }
 };
 
