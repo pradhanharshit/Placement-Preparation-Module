@@ -118,11 +118,7 @@ public:
     }
     int maxPathSum(Node* root)
     {
-         if (root==NULL)
-            return 0;
-            
-        if (root->right==NULL && root->left==NULL)
-            return root->data;
+       
             
         int res = INT_MIN;
         int x = solve(root,res);
