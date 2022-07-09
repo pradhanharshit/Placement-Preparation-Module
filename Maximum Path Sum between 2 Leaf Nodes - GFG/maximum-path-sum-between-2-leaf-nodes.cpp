@@ -122,7 +122,7 @@ public:
             
         int res = INT_MIN;
         int x = solve(root,res);
-        
+        // cout<<res<<" ";
         if (root->left == NULL || root->right == NULL)
             return max(res,x);
         return res;
