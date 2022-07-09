@@ -102,8 +102,9 @@ public:
         
         if (root->left!=NULL && root->right!=NULL)
         {
+            int temp = max(l, r) + root->data;
             res = max(res, l+r+root->data);
-            return max(l+root->data, r+root->data);
+            return temp;
         }
         
         if (root->left==NULL && root->right==NULL)
