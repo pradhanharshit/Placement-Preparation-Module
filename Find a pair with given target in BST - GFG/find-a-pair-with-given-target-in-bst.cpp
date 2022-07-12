@@ -108,7 +108,7 @@ class Solution{
             
             bool r = inorder(root->right, m, target);
             
-            return (l || r);
+            return (l or r);
         }
         return false;
     }
