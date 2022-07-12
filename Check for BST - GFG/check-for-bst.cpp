@@ -25,10 +25,13 @@ class Solution
     //Function to check whether a Binary Tree is BST or not.
     bool valid(Node *root, int &prev){
         if(root == NULL) return true;
-        if(valid(root->left, prev) == false) return false;
+        bool l = valid(root->left, prev);
+        if(l == false) return false;
         if(root->data <= prev) return false;
         prev = root->data;
-        return valid(root->right, prev);
+        bool r = valid(root->right, prev);
+        if(r == false) return false;
+        return true;
     }
     bool isBST(Node* root) 
     {
