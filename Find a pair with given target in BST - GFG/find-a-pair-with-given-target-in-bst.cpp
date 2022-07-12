@@ -100,14 +100,17 @@ class Solution{
     // root : the root Node of the given BST
     // target : the target sum
     bool inorder(Node * root, unordered_set<int> &m, int target){
-            if(root ==  NULL) return false;
+        if(root != NULL){
             bool l = inorder(root->left, m, target);
-            if(l == true) return true;;
+            
             if(m.find(target - root->data) != m.end()) return true;
             else m.insert(root->data);
+            
             bool r = inorder(root->right, m, target);
-            if(r == false) return false;
-            return true;
+            
+            return (l || r);
+        }
+        return false;
     }
     int isPairPresent(struct Node *root, int target)
     {
