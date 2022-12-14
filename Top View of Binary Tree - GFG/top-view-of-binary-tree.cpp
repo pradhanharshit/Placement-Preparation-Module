@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 //Initial Template for C++
 
 #include <bits/stdc++.h>
@@ -88,9 +88,7 @@ Node* buildTree(string str)
 }
 
 
- // } Driver Code Ends
-
-
+// } Driver Code Ends
 /*
 struct Node
 {
@@ -104,41 +102,40 @@ class Solution
     public:
     //Function to return a list of nodes visible from the top view 
     //from left to right in Binary Tree.
-    void harshit(Node *root, map<int, int> &mp){
+    vector<int> topView(Node *root)
+    {
+        //Your code here
+        map<int, vector<int>> m;
         queue<pair<Node *, int>> q;
         q.push({root, 0});
-        while(!q.empty()){
+        while( !q.empty() ){
             auto p = q.front();
             q.pop();
             Node *curr = p.first;
             int hd = p.second;
-            if(mp.find(hd)==mp.end()) mp[hd] = curr->data;
+            
+            m[hd].push_back(curr->data);
+            
             if(curr->left){
                 q.push({curr->left, hd-1});
             }
             if(curr->right){
                 q.push({curr->right, hd+1});
             }
-            
         }
-    }
-    vector<int> topView(Node *root)
-    {
-        //Your code here
-        map<int, int> mp;
-        vector<int> v;
-        harshit(root, mp);
-        for(auto it:mp){
-            v.push_back(it.second);
-        }
-        return v;
+         vector<int> v;
+       map<int,vector<int>>:: iterator it;
+       for (it = m.begin(); it!= m.end();it++){
+            v.push_back(it->second[0]);
+       }
+       return v;
     }
 
 };
 
 
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main() {
     int tc;
@@ -155,4 +152,5 @@ int main() {
         cout<<endl;
     }
     return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
